@@ -7,7 +7,7 @@
 
 
 body {
-    background-color:#e4c0ca;
+    background-color: var(--color-bg);
     display: flex;
     padding: 10px;
     justify-content: center;
@@ -15,21 +15,46 @@ body {
     min-height: 100vh;
 }
 
+:root{
+    /* Base palette */
+    --white: #ffffff;
+    --color-bg: #e4c0ca; /* body background */
+    --color-container-bg: rgb(240, 203, 203);
+    --color-header-bg: #d9a0af;
+    --color-header-bg-hover: #c88b9b;
+    --color-text-primary: #bd6868;
+    --color-text-secondary: #666666;
+
+    /* Buttons */
+    --btn-bg: rgba(209, 178, 147, 0.3);
+    --btn-bg-hover: rgba(209, 178, 147, 0.5);
+    --btn-border: rgba(255, 255, 255, 0.2);
+
+    /* Shadows */
+    --shadow-default: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    --shadow-strong: 4px 4px 12px rgba(0,0,0,0.25);
+
+    /* Footer brand (LinkedIn button) */
+    --brand-bg: var(--color-header-bg);
+    --brand-bg-hover: var(--color-header-bg-hover);
+    --brand-icon: var(--white);
+}
+
 .container {
     width: 90%;
     max-width: 350px;
     /* background: url(assets/background.jpg) no-repeat center/cover; */
-    background: rgb(240, 203, 203);
+    background: var(--color-container-bg);
     border-radius: 15px;
     overflow: hidden;
     text-align: center;
     padding-bottom: 20px;
-    box-shadow: #666 3px 3px 10px;
+    box-shadow: var(--shadow-default);
 }
 
 .header {
     position: relative;
-    background-color: #d9a0af;
+    background-color: var(--color-header-bg);
     width: 100%;
     height: 180px;
     /* background: url('assets/MorarADois.jpeg') no-repeat center/cover; */
@@ -43,11 +68,11 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: white;
+    background: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-default);
     overflow: hidden;
 }
 
@@ -63,20 +88,20 @@ body {
 }
 
 h1 {
-    color: #bd6868;
+    color: var(--color-text-primary);
     font-size: 1.2em;
     margin-bottom: 10px;
 }
 
 h4 {
-    color: #bd6868;
+    color: var(--color-text-primary);
     font-size: 0.9em;
     margin-bottom: 10px;
 }
 
 p {
     font-size: 0.9em;
-    color: #bd6868;
+    color: var(--color-text-primary);
     margin-bottom: 5px;
 }
 
@@ -91,19 +116,19 @@ p {
     width: 80%;
     margin: 10px auto;
     padding: 12px;
-    background: rgba(209, 178, 147, 0.3); /* Cor semi-transparente */
-    color: white;
+    background: var(--btn-bg); /* Cor semi-transparente */
+    color: var(--white);
     text-decoration: none;
     font-size: 1em;
     font-weight: bold;
     border-radius: 25px;
     transition: 0.3s;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-default);
     
     /* Efeito de vidro fosco */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--btn-border);
 }
 
 .btn img {
@@ -113,29 +138,45 @@ p {
 }
 
 .btnFooter{
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 20%;
-    margin: 10px auto;
-    padding: 12px;
-    background: rgba(209, 178, 147, 0.3); /* Cor semi-transparente */
-    color: white;
+    width: 56px;
+    height: 56px;
+    margin: 12px auto;
+    background: var(--brand-bg);
+    border-radius: 50%;
     text-decoration: none;
-    font-size: 1em;
-    font-weight: bold;
-    border-radius: 25px;
-    transition: 0.3s;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-default);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.btnFooter::before{
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url('assets/linkedin.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    /* icon is white by SVG fill; no filter needed */
 }
 
 .btn:hover {
-    background: rgba(209, 178, 147, 0.5); /* Aumenta a opacidade no hover */
+    background: var(--btn-bg-hover); /* Aumenta a opacidade no hover */
     transform: scale(1.05); /* Pequeno zoom */
+}
+
+.btnFooter:hover{
+    background: var(--brand-bg-hover);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-strong);
 }
 
 .footer {
     margin-top: 15px;
     font-size: 0.8em;
-    color: #666;
+    color: var(--color-text-secondary);
 }
